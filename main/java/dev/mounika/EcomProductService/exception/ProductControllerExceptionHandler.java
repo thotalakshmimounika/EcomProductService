@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ProductControllerExceptionHandler {
 
     @ExceptionHandler({ProductnotFoundException.class,NoProductPresentException.class})
-    public ResponseEntity handleProductNotFoundException(ProductnotFoundException pe){
+    public ResponseEntity handleProductNotFoundException(ProductPresentException pe){
         ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO
                 (pe.getMessage(),404);
         return new ResponseEntity(exceptionResponseDTO, HttpStatus.NOT_FOUND);

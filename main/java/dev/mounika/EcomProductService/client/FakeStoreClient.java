@@ -32,7 +32,7 @@ public class FakeStoreClient {
     }
 
     public FakeStoreProductResponseDTO getProductById(int id) {
-        String fakeStoreGetProductURL = fakeStoreAPIBaseURL.concat(fakeStoreAPICartForUser).concat("/"+id);
+        String fakeStoreGetProductURL = fakeStoreAPIBaseURL.concat(fakeStoreAPIProductpath).concat("/"+id);
         RestTemplate restTemplat = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductResponseDTO> productreponse = restTemplat.getForEntity
                 (fakeStoreGetProductURL, FakeStoreProductResponseDTO.class);

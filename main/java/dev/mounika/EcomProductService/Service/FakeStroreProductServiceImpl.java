@@ -3,6 +3,7 @@ package dev.mounika.EcomProductService.Service;
 import dev.mounika.EcomProductService.client.FakeStoreClient;
 import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
 import dev.mounika.EcomProductService.entity.Product;
+import dev.mounika.EcomProductService.exception.NoProductPresentException;
 import dev.mounika.EcomProductService.exception.ProductnotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class FakeStroreProductServiceImpl implements ProductService{
     @Override
     public List<FakeStoreProductResponseDTO> getAllproducts() {
         List<FakeStoreProductResponseDTO> fakeStoreproducts = fakeStoreClient.getProducts();
+        if(fakeStoreproducts == null){
+            throw new NoProductPresentException("No products are found");
+        }
         return  fakeStoreproducts;
     }
 

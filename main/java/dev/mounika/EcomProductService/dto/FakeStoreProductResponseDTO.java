@@ -14,4 +14,5 @@ public class FakeStoreProductResponseDTO {
     private String ImageUrl;
     private double Price;
     private String Category;
+    private FakeStoreProductRatingDTO rating;
 }
