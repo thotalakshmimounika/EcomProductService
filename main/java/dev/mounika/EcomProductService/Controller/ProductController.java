@@ -2,19 +2,20 @@ package dev.mounika.EcomProductService.Controller;
 
 import dev.mounika.EcomProductService.Service.ProductService;
 import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.mounika.EcomProductService.entity.Product;
 import dev.mounika.EcomProductService.exception.InvalidInputException;
 import dev.mounika.EcomProductService.exception.RandomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class ProductController {
     @Autowired
+    @Qualifier("ProductService")
     public ProductService productService;
 
     @GetMapping("/product")
@@ -34,7 +35,13 @@ public class ProductController {
     }
     @GetMapping("/productexception")
     public ResponseEntity getProductException(){
+
         throw new RandomException("Exception occurred from Product");
+    }
+    @PostMapping("/Product")
+    public ResponseEntity createProduct(@RequestBody Product product){
+        Product savedProduct = productService.createProduct(product);
+        return ResponseEntity.ok(savedProduct);
     }
 
 

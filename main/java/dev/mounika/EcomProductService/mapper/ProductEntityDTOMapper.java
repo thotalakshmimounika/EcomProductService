@@ -6,7 +6,6 @@ import dev.mounika.EcomProductService.entity.Product;
 public class ProductEntityDTOMapper {
     public static ProductResponseDTO convertProductEntityToProductResponseDTO(Product product) {
         ProductResponseDTO productResponseDTO = new ProductResponseDTO();
-        productResponseDTO.setProductId(product.getId());
         productResponseDTO.setName(product.getName());
         productResponseDTO.setDescription(product.getDescription());
         productResponseDTO.setPrice(product.getPrice());

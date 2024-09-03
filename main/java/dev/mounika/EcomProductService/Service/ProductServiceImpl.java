@@ -1,42 +1,32 @@
 package dev.mounika.EcomProductService.Service;
 
-import dev.mounika.EcomProductService.client.FakeStoreClient;
 import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
 import dev.mounika.EcomProductService.entity.Product;
-import dev.mounika.EcomProductService.exception.NoProductPresentException;
 import dev.mounika.EcomProductService.exception.ProductnotFoundException;
+import dev.mounika.EcomProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service("FakeStoreService")
-public class FakeStroreProductServiceImpl implements ProductService{
-
+@Service("ProductService")
+public class ProductServiceImpl implements ProductService{
     @Autowired
-    private FakeStoreClient fakeStoreClient;
-
+    private ProductRepository productRepository;
 
     @Override
     public List<FakeStoreProductResponseDTO> getAllproducts() {
-        List<FakeStoreProductResponseDTO> fakeStoreproducts = fakeStoreClient.getProducts();
-        if(fakeStoreproducts == null){
-            throw new NoProductPresentException("No products are found");
-        }
-        return  fakeStoreproducts;
+        return List.of();
     }
 
     @Override
     public FakeStoreProductResponseDTO getProductById(int id) throws ProductnotFoundException {
-        FakeStoreProductResponseDTO fakeStoreProductResponseDTO = fakeStoreClient.getProductById(id);
-        if (fakeStoreProductResponseDTO == null) {
-            throw new ProductnotFoundException("Product not found with id : "+id);
-        }
-        return fakeStoreProductResponseDTO;
+        return null;
     }
 
     @Override
     public Product createProduct(Product product) {
-        return null;
+        Product savedProduct =productRepository.save(product);
+        return savedProduct;
     }
 
     @Override
