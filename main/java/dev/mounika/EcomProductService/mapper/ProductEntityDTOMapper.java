@@ -9,7 +9,6 @@ public class ProductEntityDTOMapper {
         productResponseDTO.setName(product.getName());
         productResponseDTO.setDescription(product.getDescription());
         productResponseDTO.setPrice(product.getPrice());
-        productResponseDTO.setCategory(product.getCategory());
         productResponseDTO.setImageURL(product.getImageURL());
         productResponseDTO.setRating(product.getRating());
 

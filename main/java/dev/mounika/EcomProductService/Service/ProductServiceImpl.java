@@ -8,19 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @Service("ProductService")
 public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductRepository productRepository;
 
     @Override
-    public List<FakeStoreProductResponseDTO> getAllproducts() {
-        return List.of();
+    public List<Product> getAllproducts() {
+
+        return productRepository.findAll();
     }
 
     @Override
-    public FakeStoreProductResponseDTO getProductById(int id) throws ProductnotFoundException {
-        return null;
+    public Product getProductById(UUID id) throws ProductnotFoundException {
+        /*
+        Product savedproduct = productRepository.findById(id).get();
+        if (savedproduct == null) {
+            throw new ProductnotFoundException("Product not found id: " + id);
+        }
+        return savedproduct;
+        */
+        return productRepository.findById(id).orElseThrow(
+                () -> new ProductnotFoundException("Product not found for id "+id)
+        );
     }
 
     @Override
@@ -30,12 +42,34 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product updateProduct(Product product, int id) {
-        return null;
+    public Product updateProduct(Product product, UUID id) {
+        Product savedproduct =  productRepository.findById(id).orElseThrow(
+                () -> new ProductnotFoundException("Product not found for id "+id)
+        );
+        savedproduct.setName(product.getName());
+        savedproduct.setDescription(product.getDescription());
+        savedproduct.setPrice(product.getPrice());
+        savedproduct.setCategory(product.getCategory());
+        savedproduct.setImageURL(product.getImageURL());
+        savedproduct.setRating(product.getRating());
+       savedproduct = productRepository.save(savedproduct);
+       return savedproduct;
+
     }
 
     @Override
-    public boolean deleteProduct(int id) {
-        return false;
+    public boolean deleteProduct(UUID id) {
+        productRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public Product getProduct(String name) {
+        return productRepository.findProductByName(name);
+    }
+
+    @Override
+    public List<Product> getProductBetween(double minPrice, double maxPrice) {
+        return productRepository.findByPriceBetween(minPrice,maxPrice);
     }
 }
