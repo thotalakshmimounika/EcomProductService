@@ -1,10 +1,11 @@
 package dev.mounika.EcomProductService.Controller;
 
 import dev.mounika.EcomProductService.Service.ProductService;
-import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.mounika.EcomProductService.dto.CreateProductRequestDTO;
+import dev.mounika.EcomProductService.dto.ProductResponseDTO;
 import dev.mounika.EcomProductService.entity.Product;
 import dev.mounika.EcomProductService.exception.InvalidInputException;
-import dev.mounika.EcomProductService.exception.RandomException;
+import dev.mounika.EcomProductService.mapper.ProductEntityDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -21,41 +22,39 @@ public class ProductController {
     public ProductService productService;
 
     @GetMapping
-    public ResponseEntity getAllProducts() {
-        List<Product> products = productService.getAllproducts();
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+        List<ProductResponseDTO> products = productService.getAllproducts();
         return ResponseEntity.ok(products);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity getProductById(@PathVariable("id") UUID id) {
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable("id") UUID id) {
         if (id == null) {
             throw new InvalidInputException("Input is not correct");
         }
-        Product product = productService.getProductById(id);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(productService.getProductById(id));
+
 
     }
 
     @PostMapping
-    public ResponseEntity createProduct(@RequestBody Product product) {
-        Product savedProduct = productService.createProduct(product);
-        return ResponseEntity.ok(savedProduct);
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody CreateProductRequestDTO productRequestDTO) {
+        return ResponseEntity.ok(productService.createProduct(productRequestDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteProduct(@PathVariable("id") UUID id) {
+    public ResponseEntity<Boolean> deleteProduct(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(productService.deleteProduct(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateProduct(@PathVariable("id") UUID id, @RequestBody Product product) {
-        Product updateProduct = productService.updateProduct(product, id);
-        return ResponseEntity.ok(updateProduct);
+    public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable("id") UUID id, @RequestBody CreateProductRequestDTO productRequestDTO) {
+        return ResponseEntity.ok(productService.updateProduct(productRequestDTO,id));
     }
 
     @GetMapping("/name/{productName}")
-    public ResponseEntity getProductbyName(@PathVariable("productName") String productName) {
+    public ResponseEntity<ProductResponseDTO> getProductbyName(@PathVariable("productName") String productName) {
         return ResponseEntity.ok(productService.getProduct(productName));
     }
 

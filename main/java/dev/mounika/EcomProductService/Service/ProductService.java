@@ -1,6 +1,7 @@
 package dev.mounika.EcomProductService.Service;
 
-import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.mounika.EcomProductService.dto.CreateProductRequestDTO;
+import dev.mounika.EcomProductService.dto.ProductResponseDTO;
 import dev.mounika.EcomProductService.entity.Product;
 import dev.mounika.EcomProductService.exception.ProductnotFoundException;
 
@@ -8,12 +9,12 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
-    List<Product> getAllproducts();
-    Product getProductById(UUID id) throws ProductnotFoundException;
-    Product createProduct(Product product);
-    Product updateProduct(Product product, UUID id);
+    List<ProductResponseDTO> getAllproducts();
+    ProductResponseDTO getProductById(UUID id) throws ProductnotFoundException;
+    ProductResponseDTO createProduct(CreateProductRequestDTO product);
+    ProductResponseDTO updateProduct(CreateProductRequestDTO product, UUID id);
     boolean deleteProduct(UUID id);
-    Product getProduct(String name);
+    ProductResponseDTO getProduct(String name);
     List<Product> getProductBetween(double min, double max);
 
 }

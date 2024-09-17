@@ -1,7 +1,7 @@
 package dev.mounika.EcomProductService.client;
 
-import dev.mounika.EcomProductService.dto.FakeStoreCartResponseDTO;
-import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.mounika.EcomProductService.dto.FakeStoreDTO.FakeStoreCartResponseDTO;
+import dev.mounika.EcomProductService.dto.FakeStoreDTO.FakeStoreProductResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

@@ -1,6 +1,5 @@
-package dev.mounika.EcomProductService.dto;
+package dev.mounika.EcomProductService.dto.FakeStoreDTO;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package dev.mounika.EcomProductService.dto;
+package dev.mounika.EcomProductService.dto.FakeStoreDTO;
 
 import lombok.Getter;
 import lombok.Setter;

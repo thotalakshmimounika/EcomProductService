@@ -1,7 +1,7 @@
 package dev.mounika.EcomProductService.Service;
 
 import dev.mounika.EcomProductService.client.FakeStoreClient;
-import dev.mounika.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.mounika.EcomProductService.dto.FakeStoreDTO.FakeStoreProductResponseDTO;
 import dev.mounika.EcomProductService.entity.Product;
 import dev.mounika.EcomProductService.exception.NoProductPresentException;
 import dev.mounika.EcomProductService.exception.ProductnotFoundException;
