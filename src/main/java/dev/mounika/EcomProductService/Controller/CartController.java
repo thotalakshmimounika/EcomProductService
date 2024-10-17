@@ -2,7 +2,7 @@ package dev.mounika.EcomProductService.Controller;
 
 import dev.mounika.EcomProductService.client.FakeStoreClient;
 import dev.mounika.EcomProductService.exception.CartNotFoundException;
-import dev.mounika.EcomProductService.dto.FakeStoreCartResponseDTO;
+import dev.mounika.EcomProductService.dto.FakeStoreDTO.FakeStoreCartResponseDTO;
 import dev.mounika.EcomProductService.exception.RandomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

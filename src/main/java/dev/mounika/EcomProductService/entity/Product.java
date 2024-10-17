@@ -1,17 +1,18 @@
 package dev.mounika.EcomProductService.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
-    private int id;
+@Entity
+public class Product extends BaseModel{
     private String name;
     private String description;
     private double price;
-    private String category;
+    @ManyToOne
+    private Category category;
     private String imageURL;
     private double rating;
-
 }
